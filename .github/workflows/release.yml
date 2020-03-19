@@ -1,3 +1,4 @@
+name: create tagged release
 on:
   push:
     branches:
