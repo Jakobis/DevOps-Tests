@@ -3,15 +3,12 @@ on:
   push:
     branches:
       - master
-
 jobs:
-  tagged-release:
-    name: Create Release
+  release-on-push:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.17.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          REPO_OWNER: Jakobis
+      - uses: rymndhng/release-on-push-action@master
+        with:
+          bump_version_scheme: minor
